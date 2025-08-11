@@ -1,0 +1,671 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Essential SEO -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>BrightLine Electric | Residential & Commercial Electrical Services</title>
+  <meta name="description" content="Licensed electricians for installations, repairs, and inspections. Transparent pricing, same-day service, and 24/7 emergencies." />
+  <link rel="canonical" href="https://www.example.com/" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="BrightLine Electric — Trusted Electrical Services" />
+  <meta property="og:description" content="Transparent pricing. Licensed & insured. 24/7 emergency electricians." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.example.com/" />
+  <meta property="og:image" content="https://www.example.com/og-cover.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Favicons (update paths) -->
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <!-- Critical Styles -->
+  <style>
+    :root{
+      --bg: #ffffff;
+      --ink: #0b1b2b;         /* deep navy for high contrast */
+      --muted: #5c6b7a;
+      --brand: #1f6feb;       /* accessible blue */
+      --brand-600:#1a5cd1;
+      --brand-50:#eef5ff;
+      --accent:#00b894;       /* success/secondary accent */
+      --warn:#f5a524;
+
+      --ring: 2px solid var(--brand);
+      --radius: 12px;
+      --maxw: 1200px;
+
+      --shadow-sm: 0 1px 2px rgba(16,24,40,.06), 0 1px 1px rgba(16,24,40,.04);
+      --shadow-md: 0 8px 20px rgba(16,24,40,.12);
+    }
+
+    /* Base */
+    html {scroll-behavior: smooth;}
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.5;
+      text-rendering: optimizeLegibility;
+    }
+    img {max-width: 100%; height: auto; display: block;}
+    a {color: var(--brand); text-underline-offset: 2px;}
+    .container {max-width: var(--maxw); margin-inline: auto; padding-inline: 1rem;}
+    .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0;}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
+      border: 1px solid transparent; border-radius: 999px; padding:.8rem 1.1rem; font-weight:600;
+      background: var(--brand); color:white; text-decoration:none; box-shadow: var(--shadow-sm);
+    }
+    .btn:hover{background: var(--brand-600);}
+    .btn.secondary{background: #eef2f7; color: var(--ink); border-color:#dbe3ea;}
+    .btn.ghost{background: transparent; border-color:#dbe3ea; color: var(--ink);}
+    .pill{display:inline-block; padding:.25rem .6rem; border-radius:999px; background:var(--brand-50); color:var(--brand); font-weight:600; font-size:.85rem;}
+
+    /* Skip link */
+    .skip-link{position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden;}
+    .skip-link:focus{left:1rem; top:1rem; width:auto; height:auto; background:#fff; border:1px solid #ccc; padding:.5rem .75rem; z-index:1000;}
+
+    /* Header / Nav */
+    header{
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.9); backdrop-filter: saturate(180%) blur(8px);
+      border-bottom: 1px solid #edf1f5;
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between; gap:1rem;
+      padding-block: .6rem;
+    }
+    .brand{display:flex; align-items:center; gap:.75rem; text-decoration:none; color:inherit;}
+    .brand-logo{
+      width:40px; height:40px; border-radius:10px; display:grid; place-items:center;
+      background: linear-gradient(135deg, var(--brand), #5ac8fa);
+      color:#fff; font-weight:800; box-shadow: var(--shadow-sm);
+    }
+    .brand strong{font-size:1.05rem;}
+    .menu-toggle{display:inline-flex; border:1px solid #dbe3ea; background:#fff; border-radius:8px; padding:.5rem; cursor:pointer;}
+    nav ul{list-style:none; display:flex; gap:1rem; padding:0; margin:0; align-items:center;}
+    .nav-links{display:none;}
+    .cta-wrap{display:none;}
+    @media (min-width: 900px){
+      .menu-toggle{display:none;}
+      .nav-links{display:flex;}
+      .cta-wrap{display:flex; gap:.5rem; align-items:center;}
+    }
+
+    /* Mobile drawer */
+    .drawer{display:none; position:fixed; inset:0; background:rgba(11,27,43,.5);}
+    .drawer-panel{
+      position:absolute; right:0; top:0; bottom:0; width:min(90%,380px);
+      background:#fff; box-shadow: var(--shadow-md); padding:1rem; overflow:auto;
+    }
+    .drawer.open{display:block;}
+    .drawer a{display:block; padding:.9rem 0; color:var(--ink); text-decoration:none; border-bottom:1px solid #edf1f5;}
+
+    /* Hero */
+    .hero{padding-block: clamp(2.5rem, 4vw + 2rem, 6rem);}
+    .hero-grid{display:grid; gap:2rem; align-items:center;}
+    @media (min-width: 900px){ .hero-grid{grid-template-columns: 1.1fr .9fr;} }
+    .hero h1{font-size: clamp(1.8rem, 2.2vw + 1.6rem, 3rem); line-height:1.15; margin:0 0 .6rem;}
+    .hero p{color:var(--muted); margin:0 0 1.2rem;}
+    .hero-card{
+      border:1px solid #edf1f5; border-radius: var(--radius); padding:1rem; background:#fff; box-shadow: var(--shadow-sm);
+    }
+    .badges{display:flex; gap:.5rem; flex-wrap:wrap; margin-top:.75rem;}
+    .keypoints{display:grid; gap:.5rem; margin-top:1rem;}
+    .keypoints li{display:flex; gap:.6rem; align-items:flex-start; color:var(--muted);}
+
+    /* Sections */
+    section{padding-block: clamp(2rem, 3vw + 1.5rem, 4rem); border-top:1px solid #f2f5f8;}
+    .section-title{display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-bottom:1.2rem;}
+    .section-title h2{margin:0; font-size: clamp(1.3rem, 1.2vw + 1.1rem, 2rem);}
+    .grid{display:grid; gap:1rem;}
+    @media (min-width: 720px){ .grid.cols-3{grid-template-columns: repeat(3,1fr);} .grid.cols-2{grid-template-columns: repeat(2,1fr);} }
+
+    /* Service cards */
+    .card{
+      border:1px solid #edf1f5; border-radius: var(--radius); background:#fff; box-shadow: var(--shadow-sm);
+      padding:1rem; display:flex; flex-direction:column; gap:.6rem;
+    }
+    .card .icon{width:44px; height:44px; border-radius:10px; display:grid; place-items:center; background:#f3f7ff; color:var(--brand);}
+    .card p{color:var(--muted); margin:0;}
+    .card ul{margin:.25rem 0 0 1rem; color:var(--muted);}
+
+    /* Pricing */
+    .pricing{display:grid; gap:1rem;}
+    @media (min-width: 960px){ .pricing{grid-template-columns: repeat(3, 1fr);} }
+    .price-card{border:1.5px solid #e6eef7; border-radius:16px; padding:1rem; background:#fff; box-shadow: var(--shadow-sm); display:flex; flex-direction:column; gap:.8rem;}
+    .price-card.featured{border-color: var(--brand); box-shadow: var(--shadow-md);}
+    .price{font-size:2rem; font-weight:800;}
+    .price small{color:var(--muted); font-weight:600;}
+    .price ul{margin:.25rem 0 0 1rem; color:var(--muted);}
+
+    /* Testimonials */
+    .testimonials{display:grid; gap:1rem;}
+    @media (min-width: 900px){ .testimonials{grid-template-columns: repeat(3, 1fr);} }
+    .quote{border:1px solid #edf1f5; border-radius:16px; padding:1rem; background:#fff; box-shadow: var(--shadow-sm);}
+    .stars{color:#f7b500; font-size:1.1rem;}
+
+    /* Contact */
+    form{display:grid; gap:.8rem;}
+    label{font-weight:600;}
+    input, select, textarea{
+      width:100%; padding:.8rem .9rem; border:1px solid #dbe3ea; border-radius:10px; font:inherit; background:#fff;
+    }
+    input:focus, select:focus, textarea:focus{outline:none; box-shadow: 0 0 0 3px rgba(31,111,235,.2); border-color: var(--brand);}
+    .inline{display:grid; gap:.8rem;}
+    @media (min-width: 680px){ .inline{grid-template-columns: 1fr 1fr;} }
+    .help{color:var(--muted); font-size:.9rem;}
+    .notice{display:flex; gap:.6rem; align-items:center; background:#f6fffb; border:1px solid #d1fae5; color:#065f46; padding:.6rem .8rem; border-radius:10px;}
+
+    /* Footer */
+    footer{border-top:1px solid #edf1f5; padding-block:2rem; color:var(--muted);}
+    .footer-grid{display:grid; gap:1rem;}
+    @media (min-width: 900px){ .footer-grid{grid-template-columns: 2fr 1fr 1fr 1fr;} }
+    .mini{font-size:.95rem;}
+
+    /* Utilities */
+    .shadow-md{box-shadow: var(--shadow-md);}
+    .muted{color: var(--muted);}
+    .center{text-align:center;}
+    .stack-xs{display:flex; gap:.5rem; flex-wrap:wrap;}
+    .stack-sm{display:flex; gap:.75rem; flex-wrap:wrap;}
+    .stack-md{display:flex; gap:1rem; flex-wrap:wrap;}
+
+    /* Accessibility preferences */
+    @media (prefers-reduced-motion: reduce){
+      *{animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important;}
+    }
+
+    /* Floating mobile CTA */
+    .mobile-cta{
+      position: fixed; bottom: .75rem; left: 50%; transform: translateX(-50%);
+      display: grid; grid-auto-flow: column; gap:.5rem;
+      background:#fff; border:1px solid #e7eef6; border-radius:999px; padding:.4rem; box-shadow: var(--shadow-md);
+    }
+    @media (min-width: 900px){ .mobile-cta{display:none;} }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Header / Primary Nav -->
+  <header role="banner">
+    <div class="container nav" aria-label="Primary">
+      <a href="#" class="brand" aria-label="BrightLine Electric Home">
+        <span class="brand-logo" aria-hidden="true">BL</span>
+        <div>
+          <strong>BrightLine Electric</strong><br />
+          <span class="mini muted">Licensed • Insured • #TN-EC-12345</span>
+        </div>
+      </a>
+
+      <button class="menu-toggle" aria-expanded="false" aria-controls="mobile-drawer" aria-label="Open menu">
+        <!-- hamburger icon -->
+        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2"/></svg>
+      </button>
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#testimonials">Reviews</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </nav>
+
+      <div class="cta-wrap">
+        <a class="btn ghost" href="tel:+16155550123" aria-label="Call BrightLine Electric at 615-555-0123">Call (615) 555-0123</a>
+        <a class="btn" href="#quote" aria-label="Get a free quote">Get a Free Quote</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="drawer" id="mobile-drawer" hidden>
+    <div class="drawer-panel" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+      <div class="container" style="display:flex; justify-content:space-between; align-items:center;">
+        <strong>Menu</strong>
+        <button class="menu-toggle" aria-label="Close menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </div>
+      <nav>
+        <a href="#services">Services</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#testimonials">Reviews</a>
+        <a href="#contact">Contact</a>
+        <a href="#faq">FAQ</a>
+        <a class="btn" href="#quote">Get a Free Quote</a>
+        <a class="btn secondary" href="tel:+16155550123">Emergency 24/7</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <main id="main">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="pill">Same-Day Service • 24/7 Emergencies</span>
+          <h1>Reliable Electrical Services—On Time, Done Right, No Surprises.</h1>
+          <p>From outlet fixes to full panel upgrades, our licensed electricians deliver clean, code-compliant work with transparent pricing and zero hidden fees.</p>
+          <div class="stack-sm">
+            <a class="btn" href="#quote">Get a Free Quote</a>
+            <a class="btn secondary" href="tel:+16155550123">Call (615) 555-0123</a>
+          </div>
+          <div class="badges" aria-label="Trust badges">
+            <span class="pill" title="Licensed & Insured">Licensed & Insured</span>
+            <span class="pill" title="Background-checked technicians">Background-Checked</span>
+            <span class="pill" title="Satisfaction guarantee">Satisfaction Guaranteed</span>
+          </div>
+          <ul class="keypoints" aria-label="Key service highlights">
+            <li>
+              <svg class="icon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>
+              Upfront, flat-rate pricing—no surprise add-ons.
+            </li>
+            <li>
+              <svg class="icon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>
+              Respectful, tidy technicians who clean as they go.
+            </li>
+            <li>
+              <svg class="icon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>
+              Workmanship warranty on every job.
+            </li>
+          </ul>
+        </div>
+
+        <div class="hero-card shadow-md" aria-labelledby="quick-estimate">
+          <h2 id="quick-estimate" class="sr-only">Quick Estimate</h2>
+          <img src="hero-electrician.webp" alt="Electrician working safely on a residential panel" width="960" height="720" loading="eager" decoding="async" />
+          <p class="muted mini">Fully licensed & insured. Permit handling available.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" aria-labelledby="services-title">
+      <div class="container">
+        <div class="section-title">
+          <h2 id="services-title">Core Services</h2>
+          <a class="btn ghost" href="#contact">Need something else?</a>
+        </div>
+
+        <div class="grid cols-3" role="list">
+          <article class="card" role="listitem">
+            <div class="icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M7 2v11h3v9l7-12h-4l4-8z"/></svg>
+            </div>
+            <h3>Installations</h3>
+            <p>Lighting, outlets, EV chargers, ceiling fans, dedicated circuits.</p>
+            <ul>
+              <li>EV Charger: Level 2 home install</li>
+              <li>Recessed & accent lighting</li>
+              <li>Appliance & HVAC circuits</li>
+            </ul>
+          </article>
+
+          <article class="card" role="listitem">
+            <div class="icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M19 13H5v-2h14v2Z"/></svg>
+            </div>
+            <h3>Repairs & Troubleshooting</h3>
+            <p>Outages, tripping breakers, GFCI issues, breaker replacements.</p>
+            <ul>
+              <li>Same-day fault diagnosis</li>
+              <li>GFCI/AFCI protection</li>
+              <li>Code-compliant repairs</li>
+            </ul>
+          </article>
+
+          <article class="card" role="listitem">
+            <div class="icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2Z"/></svg>
+            </div>
+            <h3>Panels & Safety</h3>
+            <p>Panel upgrades, surge protection, whole-home safety inspections.</p>
+            <ul>
+              <li>100–200A service upgrades</li>
+              <li>Whole-home surge protection</li>
+              <li>Pre-sale electrical inspections</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" aria-labelledby="pricing-title">
+      <div class="container">
+        <div class="section-title">
+          <h2 id="pricing-title">Transparent Pricing</h2>
+          <p class="muted mini">Flat rates. Parts & permits quoted up-front. No weekend or “surprise” fees.</p>
+        </div>
+
+        <div class="pricing" role="list">
+          <article class="price-card" role="listitem" aria-label="Basic Service Visit">
+            <h3>Basic Visit</h3>
+            <div class="price">$89 <small>diagnostic</small></div>
+            <p class="muted">Waived with approved repair.</p>
+            <ul>
+              <li>Licensed electrician on site</li>
+              <li>Written estimate before work</li>
+              <li>90-day workmanship warranty</li>
+            </ul>
+            <a class="btn" href="#quote" aria-label="Get quote for Basic Visit">Get Quote</a>
+          </article>
+
+          <article class="price-card featured" role="listitem" aria-label="Popular—Panel Upgrade">
+            <h3>Panel Upgrade <span class="pill">Most Popular</span></h3>
+            <div class="price">$1,950 <small>installed</small></div>
+            <ul>
+              <li>Up to 200A panel & breakers</li>
+              <li>Permit & inspection handling</li>
+              <li>Whole-home surge protector</li>
+            </ul>
+            <a class="btn" href="#quote" aria-label="Get quote for Panel Upgrade">Get Quote</a>
+          </article>
+
+          <article class="price-card" role="listitem" aria-label="EV Charger Install">
+            <h3>EV Charger</h3>
+            <div class="price">$699 <small>labor</small></div>
+            <ul>
+              <li>Level 2 charger wiring & mount</li>
+              <li>Up to 40A circuit, 20 ft run</li>
+              <li>Load calc & code compliance</li>
+            </ul>
+            <a class="btn" href="#quote" aria-label="Get quote for EV Charger Install">Get Quote</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials & Trust -->
+    <section id="testimonials" aria-labelledby="testimonials-title">
+      <div class="container">
+        <div class="section-title">
+          <h2 id="testimonials-title">What Customers Say</h2>
+          <div class="stack-xs">
+            <img src="badge-bbb.svg" alt="BBB Accredited" width="80" height="32" loading="lazy" />
+            <img src="badge-nfpa.svg" alt="NFPA Member" width="80" height="32" loading="lazy" />
+            <img src="badge-licensed.svg" alt="Licensed & Insured" width="110" height="32" loading="lazy" />
+          </div>
+        </div>
+
+        <div class="testimonials">
+          <figure class="quote">
+            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <blockquote cite="#">
+              “Clear pricing and super tidy work. They upgraded our panel in one afternoon and handled the permit.”
+            </blockquote>
+            <figcaption>— Sarah M., Homeowner</figcaption>
+          </figure>
+
+          <figure class="quote">
+            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <blockquote cite="#">
+              “Troubleshot a tripping breaker fast. Tech explained everything and showed the fix before charging.”
+            </blockquote>
+            <figcaption>— Daniel R., Property Manager</figcaption>
+          </figure>
+
+          <figure class="quote">
+            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <blockquote cite="#">
+              “Installed a Level-2 charger and new lighting. Clean, courteous, and on time.”
+            </blockquote>
+            <figcaption>— Priya T., EV Owner</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact / Quote -->
+    <section id="contact" aria-labelledby="contact-title">
+      <div class="container grid cols-2">
+        <div>
+          <div class="section-title">
+            <h2 id="contact-title">Contact Us</h2>
+            <a class="btn ghost" href="tel:+16155550123">Tap to Call</a>
+          </div>
+          <p class="muted">Service area: Davidson, Williamson, and surrounding counties. Mon–Sat, 7am–7pm. 24/7 emergency line.</p>
+          <div class="notice" role="status" aria-live="polite">
+            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13 13h-2V7h2m0 10h-2v-2h2M1,21H23L12,2"/></svg>
+            <span>Emergency? Call now for fastest dispatch: <a href="tel:+16155550123">(615) 555-0123</a></span>
+          </div>
+          <ul class="keypoints" style="margin-top:1rem">
+            <li><strong>Certifications:</strong> Licensed TN Electrical Contractor • OSHA 30 • NFPA 70E Compliant</li>
+            <li><strong>Guarantees:</strong> Up-front pricing, no hidden fees • Clean workspace pledge • Warranty on all work</li>
+          </ul>
+        </div>
+
+        <div id="quote" class="hero-card" aria-labelledby="quote-title">
+          <h3 id="quote-title">Get a Free Quote</h3>
+          <form id="quote-form" novalidate>
+            <div class="inline">
+              <div>
+                <label for="name">Full name</label>
+                <input id="name" name="name" autocomplete="name" inputmode="text" required aria-describedby="name-help" />
+                <div class="help" id="name-help">So we know how to address you.</div>
+              </div>
+              <div>
+                <label for="phone">Phone</label>
+                <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required aria-describedby="phone-help" />
+                <div class="help" id="phone-help">We’ll only call about this request.</div>
+              </div>
+            </div>
+
+            <div class="inline">
+              <div>
+                <label for="email">Email (optional)</label>
+                <input id="email" name="email" type="email" autocomplete="email" />
+              </div>
+              <div>
+                <label for="service">Service needed</label>
+                <select id="service" name="service" required>
+                  <option value="">Select a service…</option>
+                  <option>Panel Upgrade</option>
+                  <option>EV Charger Install</option>
+                  <option>Lighting / Outlets</option>
+                  <option>Repair / Troubleshooting</option>
+                  <option>Inspection</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label for="message">Brief description</label>
+              <textarea id="message" name="message" rows="4" placeholder="Tell us what’s going on…" required></textarea>
+            </div>
+
+            <div class="inline">
+              <div>
+                <label for="zip">ZIP code</label>
+                <input id="zip" name="zip" inputmode="numeric" pattern="[0-9]{5}" placeholder="e.g., 37064" required />
+              </div>
+              <div>
+                <label for="timing">Preferred timing</label>
+                <select id="timing" name="timing">
+                  <option>As soon as possible</option>
+                  <option>Next 24–48 hours</option>
+                  <option>Within a week</option>
+                </select>
+              </div>
+            </div>
+
+            <button class="btn" type="submit">Request Quote</button>
+            <p class="help">By submitting, you agree to our <a href="#">Terms</a> & <a href="#">Privacy Policy</a>.</p>
+            <p id="form-status" class="sr-only" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ (SEO + Accessibility) -->
+    <section id="faq" aria-labelledby="faq-title">
+      <div class="container">
+        <div class="section-title">
+          <h2 id="faq-title">FAQs</h2>
+        </div>
+        <details>
+          <summary>Do you charge for estimates?</summary>
+          <p>Diagnostics are $89 and applied to the repair if approved. Remote estimates for straightforward jobs are free.</p>
+        </details>
+        <details>
+          <summary>Are you insured and licensed?</summary>
+          <p>Yes, we’re fully insured and licensed in Tennessee (License #TN-EC-12345).</p>
+        </details>
+        <details>
+          <summary>Do you offer emergency service?</summary>
+          <p>Yes—24/7. For fastest response, call <a href="tel:+16155550123">(615) 555-0123</a>.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <!-- Floating Mobile CTA -->
+  <div class="mobile-cta" role="region" aria-label="Quick actions">
+    <a class="btn" href="tel:+16155550123" aria-label="Call now">Call</a>
+    <a class="btn secondary" href="#quote" aria-label="Get a quote">Quote</a>
+    <a class="btn ghost" href="#pricing" aria-label="View pricing">Pricing</a>
+  </div>
+
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <div class="container footer-grid">
+      <div>
+        <strong>BrightLine Electric</strong><br />
+        <span>Serving Greater Nashville & Surrounding Areas</span>
+        <p class="mini">© <span id="year"></span> BrightLine Electric. All rights reserved.</p>
+      </div>
+      <div>
+        <strong>Company</strong>
+        <ul class="mini" style="list-style:none; padding:0;">
+          <li><a href="#services">Services</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#testimonials">Reviews</a></li>
+        </ul>
+      </div>
+      <div>
+        <strong>Legal</strong>
+        <ul class="mini" style="list-style:none; padding:0;">
+          <li><a href="#">License & Insurance</a></li>
+          <li><a href="#">Terms & Privacy</a></li>
+          <li><a href="#">Warranty</a></li>
+        </ul>
+      </div>
+      <div>
+        <strong>Contact</strong>
+        <ul class="mini" style="list-style:none; padding:0;">
+          <li><a href="tel:+16155550123">(615) 555-0123</a></li>
+          <li><a href="mailto:hello@example.com">hello@example.com</a></li>
+          <li>Mon–Sat 7am–7pm • 24/7 Emergencies</li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JSON-LD (LocalBusiness + FAQ) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Electrician",
+    "name":"BrightLine Electric",
+    "image":"https://www.example.com/og-cover.jpg",
+    "url":"https://www.example.com/",
+    "telephone":"+1-615-555-0123",
+    "priceRange":"$$",
+    "address":{
+      "@type":"PostalAddress",
+      "addressLocality":"Nashville",
+      "addressRegion":"TN",
+      "postalCode":"37201",
+      "addressCountry":"US"
+    },
+    "areaServed":[{"@type":"City","name":"Nashville"},{"@type":"City","name":"Franklin"},{"@type":"City","name":"Brentwood"}],
+    "openingHoursSpecification":[
+      {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"07:00","closes":"19:00"},
+      {"@type":"OpeningHoursSpecification","dayOfWeek":["Sunday"],"opens":"00:00","closes":"00:00"}
+    ],
+    "sameAs":["https://www.facebook.com/yourpage","https://www.instagram.com/yourhandle"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"Do you charge for estimates?","acceptedAnswer":{"@type":"Answer","text":"Diagnostics are $89 and applied to the repair if approved. Remote estimates for straightforward jobs are free."}},
+      {"@type":"Question","name":"Are you insured and licensed?","acceptedAnswer":{"@type":"Answer","text":"Yes, we’re fully insured and licensed in Tennessee (License #TN-EC-12345)."}},
+      {"@type":"Question","name":"Do you offer emergency service?","acceptedAnswer":{"@type":"Answer","text":"Yes—24/7 emergency dispatch is available by phone."}}
+    ]
+  }
+  </script>
+
+  <!-- Minimal, deferred JS for nav + form validation; no frameworks -->
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile drawer
+    const drawer = document.getElementById('mobile-drawer');
+    const toggles = document.querySelectorAll('.menu-toggle');
+    toggles.forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const open = drawer.classList.toggle('open');
+        drawer.hidden = !open;
+        // aria-expanded sync
+        toggles.forEach(b => b.setAttribute('aria-expanded', open ? 'true' : 'false'));
+        if(open) drawer.querySelector('a,button').focus();
+      });
+    });
+    drawer.addEventListener('click', (e)=>{
+      if(e.target === drawer){ // click backdrop to close
+        drawer.classList.remove('open'); drawer.hidden = true;
+        toggles.forEach(b => b.setAttribute('aria-expanded','false'));
+      }
+    });
+
+    // Trap focus inside drawer when open (accessibility)
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape' && !drawer.hidden){
+        drawer.classList.remove('open'); drawer.hidden = true;
+        toggles.forEach(b => b.setAttribute('aria-expanded','false'));
+        toggles[0].focus();
+      }
+    });
+
+    // Lightweight client-side validation + polite status
+    const form = document.getElementById('quote-form');
+    const status = document.getElementById('form-status');
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const fd = new FormData(form);
+      const required = ['name','phone','service','message','zip'];
+      for(const field of required){
+        if(!fd.get(field)){ alert('Please fill out all required fields.'); return; }
+      }
+      if(fd.get('zip') && !/^\d{5}$/.test(fd.get('zip'))){
+        alert('Please enter a valid 5-digit ZIP code.'); return;
+      }
+
+      // TODO: replace with your endpoint (Netlify Forms, Formspree, custom API)
+      // Example: fetch('/api/quote', { method:'POST', body: fd })
+      status.textContent = 'Thanks! Your request was submitted. We’ll contact you shortly.';
+      status.classList.remove('sr-only');
+      form.reset();
+    });
+
+    // Lazy-load non-critical images by default (native), ensure decode async
+    document.querySelectorAll('img').forEach(img=>{
+      if(!img.hasAttribute('loading')) img.setAttribute('loading','lazy');
+      if(!img.hasAttribute('decoding')) img.setAttribute('decoding','async');
+    });
+  </script>
+</body>
+</html>
